@@ -16,12 +16,16 @@ const Anecdote = ({ anecdote, handleClick }) => {
 const Anecdotes = () => {
   const dispatch = useDispatch();
 
-  // Sortataan votejen mukaan
-  const anecdotes = useSelector((state) =>
-    state.sort(function (a, b) {
+  const anecdotes = useSelector(({ filter, anecdotes }) => {
+    //haetaan kaikki lajiteltuna ja filtteröidään, jos tarve
+    let anekdootit = anecdotes.sort(function (a, b) {
       return b.votes - a.votes;
-    })
-  );
+    });
+    if (filter === "") {
+      return anekdootit;
+    }
+    return anekdootit.filter((a) => a.content.includes(filter));
+  });
 
   return (
     <div>

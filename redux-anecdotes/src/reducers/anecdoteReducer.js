@@ -20,8 +20,6 @@ const asObject = (anecdote) => {
 const initialState = anecdotesAtStart.map(asObject);
 
 const anecdoteReducer = (state = initialState, action) => {
-  //console.log("state now: ", state);
-
   switch (action.type) {
     case "NEW_ANECDOTE": {
       const newAnecdoteObject = asObject(action.payload.content);
