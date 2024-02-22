@@ -9,7 +9,7 @@ const store = createStore(counterReducer);
 
 store.subscribe(() => {
   const storeNow = store.getState();
-  console.log("storeNow ", storeNow);
+  //console.log("storeNow ", storeNow);
 });
 
 const App = () => {
