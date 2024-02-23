@@ -20,6 +20,7 @@ const asObject = (anecdote) => {
 };
 
 const initialState = anecdotesAtStart.map(asObject);
+initialState.sort((a, b) => b.votes - a.votes);
 
 const anecdoteSlice = createSlice({
   name: "anecdotes",
@@ -43,9 +44,12 @@ const anecdoteSlice = createSlice({
 
       //console.log(JSON.parse(JSON.stringify(state)));
 
-      return state.map((anecdote) =>
+      let sortatutAnekdootit = state.map((anecdote) =>
         anecdote.id !== id ? anecdote : changedAnecdote
       );
+      sortatutAnekdootit.sort((a, b) => b.votes - a.votes);
+
+      return sortatutAnekdootit;
     },
   },
 });
