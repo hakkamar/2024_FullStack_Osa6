@@ -6,14 +6,9 @@ const notificationSlice = createSlice({
   reducers: {
     addNotification(state, action) {
       const notification = action.payload;
-      /*   
-      state.push({
-        notification,
-      });
-      */
       return notification;
     },
-    removeNotification(state, action) {
+    removeNotification() {
       const notification = "";
       return notification;
     },
@@ -22,5 +17,21 @@ const notificationSlice = createSlice({
 
 export const { addNotification, removeNotification } =
   notificationSlice.actions;
+
+export const setNotification = (content, aika) => {
+  let aikaMillisekunteina = 0;
+  if (aika < 1 || aika === undefined || aika > 10) {
+    aikaMillisekunteina = 5000;
+  } else {
+    aikaMillisekunteina = aika * 1000;
+  }
+  return async (dispatch) => {
+    dispatch(addNotification(content));
+    setTimeout(() => {
+      dispatch(removeNotification());
+      //errori = false;
+    }, aikaMillisekunteina);
+  };
+};
 
 export default notificationSlice.reducer;
