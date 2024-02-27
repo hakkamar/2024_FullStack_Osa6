@@ -28,6 +28,7 @@ const App = () => {
   //console.log(JSON.parse(JSON.stringify(result)));
 
   const anecdotes = result.data;
+  const sortatutAnekdootit = anecdotes.sort((a, b) => b.votes - a.votes);
 
   return (
     <div>
@@ -36,7 +37,7 @@ const App = () => {
       <Notification />
       <AnecdoteForm />
 
-      {anecdotes.map((anecdote) => (
+      {sortatutAnekdootit.map((anecdote) => (
         <div key={anecdote.id}>
           <div>{anecdote.content}</div>
           <div>
